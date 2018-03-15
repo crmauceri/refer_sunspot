@@ -13,9 +13,8 @@ Note, each detections/xxx.json contains
 
 ## Download
 
-1.Make a folder named as "images".
-2.Add "SUNRGBD" into "images/". 
-Download SUNRGBD from [http://rgbd.cs.princeton.edu](http://rgbd.cs.princeton.edu)
+1. Make a folder named as "images".
+2. Add "SUNRGBD" into "images/". Download SUNRGBD from [http://rgbd.cs.princeton.edu](http://rgbd.cs.princeton.edu)
 
 If you want to use the refcoco, refcoco+, refcocog, or refclef datasets follow the [download instructions](https://github.com/lichengunc/refer/tree/master/data) from the original repository and add the files to the data folder. 
 
