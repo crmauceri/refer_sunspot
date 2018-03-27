@@ -57,7 +57,7 @@ def cook_refs(refs, eff=None, n=4): ## lhuang: oracle will call with "average"
 
     return (reflen, maxcounts)
 
-def cook_test(test, (reflen, refmaxcounts), eff=None, n=4):
+def cook_test(test, reflen, refmaxcounts, eff=None, n=4):
     '''Takes a test sentence and returns an object that
     encapsulates everything that BLEU needs to know about it.'''
 
@@ -112,7 +112,7 @@ class BleuScorer(object):
         if refs is not None:
             self.crefs.append(cook_refs(refs))
             if test is not None:
-                cooked_test = cook_test(test, self.crefs[-1])
+                cooked_test = cook_test(test, self.crefs[-1][0], self.crefs[-1][1])
                 self.ctest.append(cooked_test) ## N.B.: -1
             else:
                 self.ctest.append(None) # lens of crefs and ctest have to match
@@ -144,7 +144,7 @@ class BleuScorer(object):
         assert len(new_test) == len(self.crefs), new_test
         self.ctest = []
         for t, rs in zip(new_test, self.crefs):
-            self.ctest.append(cook_test(t, rs))
+            self.ctest.append(cook_test(t, rs[0], rs[1]))
         self._score = None
 
         return self
@@ -239,7 +239,7 @@ class BleuScorer(object):
                     bleu_list[k][-1] *= math.exp(1 - 1/ratio)
 
             if verbose > 1:
-                print comps, reflen
+                print(comps, reflen)
 
         totalcomps['reflen'] = self._reflen
         totalcomps['testlen'] = self._testlen
@@ -256,8 +256,8 @@ class BleuScorer(object):
                 bleus[k] *= math.exp(1 - 1/ratio)
 
         if verbose > 0:
-            print totalcomps
-            print "ratio:", ratio
+            print(totalcomps)
+            print("ratio:", ratio)
 
         self._score = bleus
         return self._score, bleu_list
