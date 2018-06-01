@@ -1,12 +1,13 @@
 __author__ = 'licheng'
 
 """
-This interface provides access to four datasets:
+This interface provides access to five datasets:
 1) refclef
 2) refcoco
 3) refcoco+
 4) refcocog
-split by unc and google
+5) sunspot
+split by unc, google, and boulder
 
 The following API functions are defined:
 REFER      - REFER api class
@@ -34,7 +35,6 @@ import skimage.io as io
 import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
 from matplotlib.patches import Polygon, Rectangle
-from pprint import pprint
 import numpy as np
 from external import mask
 
