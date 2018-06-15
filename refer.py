@@ -211,6 +211,12 @@ class REFER:
         elif type(ref_ids) == int:
             return [self.Refs[ref_ids]]
 
+    def loadSents(self, ref_ids=[]):
+        if type(ref_ids) == list:
+            return [self.Sents[id] for id in self.Sents if self.sentToRef[id]['ref_id'] in ref_ids]
+        elif type(ref_ids) == int:
+            return [self.Refs[ref_ids]['sentences']]
+
     def loadAnns(self, ann_ids=[]):
         if type(ann_ids) == list:
             return [self.Anns[ann_id] for ann_id in ann_ids]
@@ -297,4 +303,3 @@ class REFER:
         msk = M['mask']
         ax = plt.gca()
         ax.imshow(msk)
-
