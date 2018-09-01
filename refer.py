@@ -53,6 +53,8 @@ class REFER:
             self.IMAGE_DIR = osp.join(data_root, 'images/saiapr_tc-12')
         elif dataset == 'sunspot':
             self.IMAGE_DIR = osp.join(data_root, 'images/SUNRGBD')
+        elif dataset == 'syntheticsun':
+            self.IMAGE_DIR = osp.join(data_root, 'images/syntheticsun')
         else:
             print('No refer dataset is called [%s]' % dataset)
             sys.exit()
@@ -202,6 +204,15 @@ class REFER:
             image_ids = self.Imgs.keys()
         return image_ids
 
+    def getSentIds(self, ref_ids=[]):
+        ref_ids = ref_ids if type(ref_ids) == list else [ref_ids]
+
+        if not len(ref_ids) == 0:
+            sent_ids = list(set([id for ref_id in ref_ids for id in self.Refs[ref_id]['sent_ids']]))
+        else:
+            sent_ids = self.Imgs.keys()
+        return sent_ids
+
     def getCatIds(self):
         return self.Cats.keys()
 
@@ -210,12 +221,6 @@ class REFER:
             return [self.Refs[ref_id] for ref_id in ref_ids]
         elif type(ref_ids) == int:
             return [self.Refs[ref_ids]]
-
-    def loadSents(self, ref_ids=[]):
-        if type(ref_ids) == list:
-            return [self.Sents[id] for id in self.Sents if self.sentToRef[id]['ref_id'] in ref_ids]
-        elif type(ref_ids) == int:
-            return [self.Refs[ref_ids]['sentences']]
 
     def loadAnns(self, ann_ids=[]):
         if type(ann_ids) == list:
