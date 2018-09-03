@@ -47,7 +47,7 @@ class RefEvaluation:
         print('setting up scorers...')
         scorers = [
             (Bleu(4), ["Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4"]),
-            (Meteor(),"METEOR"),
+            #(Meteor(),"METEOR"),
             (Rouge(), "ROUGE_L"),
             (Cider(), "CIDEr")
         ]
@@ -87,19 +87,22 @@ if __name__ == '__main__':
 
     import os.path as osp
     import sys
+    from csv import DictReader
     ROOT_DIR = osp.abspath(osp.join(osp.dirname(__file__), '..', '..'))
     sys.path.insert(0, osp.join(ROOT_DIR, 'lib', 'datasets'))
-    from refer import REFER
+    from refer_python3.refer import REFER
 
     # load refer of dataset
     dataset = 'refcoco'
-    refer = REFER(dataset, splitBy = 'google')
+    refer = REFER(dataset=dataset, splitBy = 'google', data_root='../data/')
 
-    # mimic some Res
-    val_refIds = refer.getRefIds(split='test')
-    ref_id = 49767
-    print("GD: %s" % refer.Refs[ref_id]['sentences'])
-    Res = [{'ref_id': ref_id, 'sent': 'left bottle'}]
+    # load generation outputs
+    Res = []
+    with open('/Users/Mauceri/Workspace/ReferExpGeneration/output/maoetal_baseline_batch_hidden1024_feats2005_dropout0.0_l21.0e-05.mdl_refcocog_15_generated.csv',
+              newline='') as csvfile:
+        genData = DictReader(csvfile)
+        for row in genData:
+            Res.append({'ref_id':row[refID], 'sent':row['generated_sentence']})
 
     # evaluate some refer expressions
     refEval = RefEvaluation(refer, Res)
