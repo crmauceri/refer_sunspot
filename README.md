@@ -64,7 +64,7 @@ refer_python3/
     ├── images/
         ├── SUNRGBD/ # Download the SUNRGBD images - http://rgbd.cs.princeton.edu
         ├── mscoco/  # Download the mscoco images - http://cocodataset.org/#download
-    ├──sunspot/
+    ├── sunspot/
         ├── instances.json
         ├── refs(boulder).p
     ├── refclef/     # https://github.com/lichengunc/refer/tree/master/data (optional)
@@ -73,10 +73,11 @@ refer_python3/
     ├── refcoco+/    # https://github.com/lichengunc/refer/tree/master/data (optional)
 ├── external/   # segmentation mask encoding/decoding from cocoAPI
 ├── nlg-eval/   # machine translation metrics for evaluating generated expressions
-├── test/       # 
 ├── setup.py    # supports `pip install -e .` installation
+├── refer.py    # the class that loads the dataset
+├── evaluate.py # compares dataset groundtruth to another set of referring expressions
+├── pyReferDemo.ipynb # jupyter notebook to view examples and dataset statistics
 ```                
-
 
 ## How to use
 
