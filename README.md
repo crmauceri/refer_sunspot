@@ -67,21 +67,22 @@ refer_python3/
     ├── sunspot/
         ├── instances.json
         ├── refs(boulder).p
-    ├── refclef/     # https://github.com/lichengunc/refer/tree/master/data (optional)
-    ├── refcoco/     # https://github.com/lichengunc/refer/tree/master/data (optional)
-    ├── refcocog/    # https://github.com/lichengunc/refer/tree/master/data  (optional)
-    ├── refcoco+/    # https://github.com/lichengunc/refer/tree/master/data (optional)
-├── external/   # segmentation mask encoding/decoding from cocoAPI
-├── nlg-eval/   # machine translation metrics for evaluating generated expressions
-├── setup.py    # supports `pip install -e .` installation
-├── refer.py    # the class that loads the dataset
-├── evaluate.py # compares dataset groundtruth to another set of referring expressions
+    ├── refclef/      # https://github.com/lichengunc/refer/tree/master/data (optional)
+    ├── refcoco/      # https://github.com/lichengunc/refer/tree/master/data (optional)
+    ├── refcocog/     # https://github.com/lichengunc/refer/tree/master/data  (optional)
+    ├── refcoco+/     # https://github.com/lichengunc/refer/tree/master/data (optional)
+├── external/         # segmentation mask encoding/decoding from cocoAPI
+├── nlg-eval/         # machine translation metrics for evaluating generated expressions
+├── setup.py          # supports `pip install -e .` installation
+├── refer.py          # the class that loads the dataset
+├── evaluate.py       # compares dataset groundtruth to another set of referring expressions
 ├── pyReferDemo.ipynb # jupyter notebook to view examples and dataset statistics
 ```                
 
 ## How to use
 
-The "refer.py" is able to load all 4 datasets from the original repository [refer api](https://github.com/lichengunc/refer) as well as the new SUNRGBD dataset. 
+### Loading the dataset
+The `refer.py` is able to load all 4 datasets from the original repository [refer api](https://github.com/lichengunc/refer) as well as the new SUNRGBD dataset. 
 
 ```python
 # locate your own data_root, and choose the dataset_splitBy you want to use
@@ -98,5 +99,12 @@ refer = REFER(data_root, dataset='refcocog', splitBy='google')   # test split no
 refer = REFER(data_root, dataset='refcocog', splitBy='umd')      # Recommended, including train/val/test
 ```
 
-If you have jupyter, `pyReferDemo.ipynb` is an easy way to view some of the dataset examples and statistics.
+### Data Demo
+The jupyter notebook `pyReferDemo.ipynb` is an easy way to view some of the dataset examples and statistics.
 
+### Evaluating generated expressions
+Finally, if you have a set of generated expressions that you want to compare to a dataset's ground truth, use `evaluate.py`
+
+1. Save your generated expressions in a csv file with columns "refId" and "generated_sentence" and one row per expression.
+2. Run `python evaluate.py csv --csvpath <path_to_your_csv> --dataset sunspot --splitBy boulder`
+3. This will print Bleu, ROUGE_L, and CIDEr scores for your generated sentences. For more options, see `evaluate.py` 

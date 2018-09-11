@@ -13,8 +13,8 @@ from csv import DictReader
 from nlgeval import NLGEval
 
 # Loads and executes the models
-# Metrics that are calculated by default are Bleu, ROUGE_L, CIDEr, and METEOR
-def evaluate(hypothesis, references, no_skipthoughts=True, no_glove=True, metrics_to_omit=[]):
+# Metrics that are calculated by default are Bleu, ROUGE_L, and CIDEr
+def evaluate(hypothesis, references, no_skipthoughts=True, no_glove=True, metrics_to_omit=['METEOR']):
     nlgeval = NLGEval(no_skipthoughts=no_skipthoughts, no_glove=no_glove, metrics_to_omit=metrics_to_omit)
     return nlgeval.compute_metrics(references, hypothesis)
 
@@ -51,9 +51,9 @@ def csv_evaluate(csvpath, refer, no_skipthoughts=True, no_glove=True, metrics_to
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Classify missing words with LSTM.')
     parser.add_argument('mode', help='self/csv')
-    parser.add_argument('csvpath', help='Filepath to csv file with hypothesis', default='')
+    parser.add_argument('--csvpath', help='Filepath to csv file with hypothesis', default='')
 
-    parser.add_argument('--data_root', help='path to data directory', default='pyutils/refer_python3/data')
+    parser.add_argument('--data_root', help='path to data directory', default='data')
     parser.add_argument('--dataset', help='dataset name', default='sunspot')
     parser.add_argument('--splitBy', help='team that made the dataset splits', default='boulder')
 
