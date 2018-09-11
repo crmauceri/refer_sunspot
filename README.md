@@ -4,11 +4,22 @@ This repository is a forked version of the [refer API](https://github.com/lichen
 
 SUNSPOT is a new referring expression dataset focused on spatial referring expressions. The purpose of this dataset is to aid human robot collaboration in scenes which provide challenges to object detection and localization due to clutter, occlusion, unknown object classes, and multiple instances of the same object class. It also presents a challenging dataset for natural language and the understanding of spatial prepositional phrases in English. Our dataset provides 7,987 referring expressions of 1948 images with an average of 2.60 spatial prepositions per expression. 
 
-![Example of data]()
-
-Annotations include bounding boxes, instance segmentation, scene and object labels, and referring expressions.
-
 For more details about the SUNSPOT dataset, please read our paper [SUN-SPOT: Localizing objects with spatial referring expressions]().
+
+## Example
+
+![Example image with bounding boxes](readme_imgs/06816.jpg)
+
+- The calendar is hanging below the cupboards above the sink
+- The calendar is over the sink.
+- The flowers in the corner of the room, to the right of the silver plaque.
+- The flowers are on the corner of the counters, to the left of the range.
+- The flowers are on top of the white table in a clear vase.
+- The red, white and yellow flowers sitting in the middle of the table.
+
+Image includes depth channel. Annotations include bounding boxes, instance segmentation, and scene and object labels.
+
+![Depth image](readme_imgs/depth.jpg) ![Segmentation image](readme_imgs/segmentation.jpg) ![3d bounding boxes](readme_imgs/06816_3d.jpg)
 
 ## Citation
 
@@ -73,7 +84,7 @@ The "refer.py" is able to load all 4 datasets from the original repository [refe
 
 ```python
 # locate your own data_root, and choose the dataset_splitBy you want to use
-refer = REFER(data_root, dataset='sunspot',  splitBy='boulder') #The new dataset!
+refer = REFER(data_root, dataset='sunspot',  splitBy='boulder') # The new dataset!
 
 
 # Other datasets
@@ -86,11 +97,5 @@ refer = REFER(data_root, dataset='refcocog', splitBy='google')   # test split no
 refer = REFER(data_root, dataset='refcocog', splitBy='umd')      # Recommended, including train/val/test
 ```
 
-<!-- refs(dataset).p contains list of refs, where each ref is
-{ref_id, ann_id, category_id, file_name, image_id, sent_ids, sentences}
-ignore filename
-
-Each sentences is a list of sent
-{arw, sent, sent_id, tokens}
- -->
+If you have jupyter, `pyReferDemo.ipynb` is an easy way to view some of the dataset examples and statistics.
 
