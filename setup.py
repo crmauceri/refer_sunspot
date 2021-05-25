@@ -1,25 +1,19 @@
-"""
-This code is for making mask.so, used to visualize the segmentation of referred object.
-All "mask" related code is copied from https://github.com/pdollar/coco.git
-"""
-from distutils.core import setup
-from Cython.Build import cythonize
-from distutils.extension import Extension
-import numpy as np
+import setuptools
 
-ext_modules = [
-            Extension(
-                'external._mask',
-                sources=['external/maskApi.c', 'external/_mask.pyx'],
-                include_dirs = [np.get_include(), 'external'],
-                extra_compile_args=['-Wno-cpp', '-Wno-unused-function', '-std=c99'],
-            )
-        ]
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-setup(
-    name='external',
-    packages=['external'],
-    package_dir = {'external': 'external'},
-    version='2.0',
-    ext_modules=cythonize(ext_modules)
-    )
+setuptools.setup(
+    name="refer_dataloader",
+    version="0.0.1",
+    description="Pytorch dataloaders for ReferIt, Google RefExp, and SUNSpot",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    packages=setuptools.find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
+)

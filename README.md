@@ -49,8 +49,8 @@ Yu, Licheng, et al. "Modeling Context in Referring Expressions." ECCV 2016.
 
 1. Repository contains a submodule for evaluating the results so clone recursively with \
 ```git clone --recurse-submodules https://github.com/crmauceri/refer_python3.git```
-2. Run `make`. It will generate ``_mask.c`` and ``_mask.so`` in ``external/`` folder.
-These mask-related codes are copied from the [coco API](https://github.com/pdollar/coco).
+2. Download and install pycocotools
+```conda install -c conda-forge pycocotools```
 4. Prepare Images: [Download the SUNRGBD images](http://rgbd.cs.princeton.edu) and add them into the ``data/images/SUNRGBD`` directory. 
 3. Download additional annotations:
 If you want to use the refcoco, refcoco+, refcocog, or refclef datasets follow the [download instructions](https://github.com/lichengunc/refer/tree/master/data) from the original repository and add the files to the data folder. The sunspot dataset is included in the repository. 
@@ -71,7 +71,6 @@ refer_python3/
     ├── refcoco/      # https://github.com/lichengunc/refer/tree/master/data (optional)
     ├── refcocog/     # https://github.com/lichengunc/refer/tree/master/data  (optional)
     ├── refcoco+/     # https://github.com/lichengunc/refer/tree/master/data (optional)
-├── external/         # segmentation mask encoding/decoding from cocoAPI
 ├── nlg-eval/         # machine translation metrics for evaluating generated expressions
 ├── setup.py          # supports `pip install -e .` installation
 ├── refer.py          # the class that loads the dataset
