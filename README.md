@@ -4,7 +4,9 @@ This repository is a forked version of the [refer API](https://github.com/lichen
 
 SUNSPOT is a new referring expression dataset focused on spatial referring expressions. The purpose of this dataset is to aid human robot collaboration in scenes which provide challenges to object detection and localization due to clutter, occlusion, unknown object classes, and multiple instances of the same object class. It also presents a challenging dataset for natural language and the understanding of spatial prepositional phrases in English. Our dataset provides 7,987 referring expressions of 1948 images with an average of 2.60 spatial prepositions per expression. 
 
-For more details about the SUNSPOT dataset, please read our paper [SUN-SPOT: Localizing objects with spatial referring expressions]().
+For more details about the SUNSPOT dataset, please read our paper [SUN-SPOT: Localizing objects with spatial referring expressions](https://openaccess.thecvf.com/content_ICCVW_2019/papers/CLVL/Mauceri_SUN-Spot_An_RGB-D_Dataset_With_Spatial_Referring_Expressions_ICCVW_2019_paper.pdf).
+
+Our annotations are available at [https://zenodo.org/records/14693339](https://zenodo.org/records/14693339)
 
 ## Example
 
@@ -51,9 +53,10 @@ Yu, Licheng, et al. "Modeling Context in Referring Expressions." ECCV 2016.
 ```git clone --recurse-submodules https://github.com/crmauceri/refer_python3.git```
 2. Download and install pycocotools
 ```conda install -c conda-forge pycocotools```
-4. Prepare Images: [Download the SUNRGBD images](http://rgbd.cs.princeton.edu) and add them into the ``data/images/SUNRGBD`` directory. 
+4. Prepare Images: [Download the SUNRGBD images](http://rgbd.cs.princeton.edu) and add them into the ``data/images/SUNRGBD`` directory.
+5. [Download the SUN-Spot annotations](https://zenodo.org/records/14693339) and add them into the ``data/sunspot`` directory.
 3. Download additional annotations:
-If you want to use the refcoco, refcoco+, refcocog, or refclef datasets follow the [download instructions](https://github.com/lichengunc/refer/tree/master/data) from the original repository and add the files to the data folder. The sunspot dataset is included in the repository. 
+If you want to use the refcoco, refcoco+, refcocog, or refclef datasets follow the [download instructions](https://github.com/lichengunc/refer/tree/master/data) from the original repository and add the files to the data folder. 
 
 ## Directory structure
 After following the setup instructions, you should have the following directory structure
